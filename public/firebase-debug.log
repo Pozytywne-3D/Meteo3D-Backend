@@ -1,0 +1,115 @@
+[debug] [2020-02-26T14:38:02.263Z] ----------------------------------------------------------------------
+[debug] [2020-02-26T14:38:02.265Z] Command:       /usr/bin/node /usr/bin/firebase serve --only functions,hosting
+[debug] [2020-02-26T14:38:02.265Z] CLI Version:   7.12.1
+[debug] [2020-02-26T14:38:02.265Z] Platform:      linux
+[debug] [2020-02-26T14:38:02.265Z] Node Version:  v13.1.0
+[debug] [2020-02-26T14:38:02.281Z] Time:          Wed Feb 26 2020 14:38:02 GMT+0000 (uniwersalny czas koordynowany)
+[debug] [2020-02-26T14:38:02.281Z] ----------------------------------------------------------------------
+[debug] [2020-02-26T14:38:02.282Z] 
+[debug] [2020-02-26T14:38:02.288Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-26T14:38:02.289Z] > authorizing via signed-in user
+[debug] [2020-02-26T14:38:02.289Z] [iam] checking project meteo3d-d1068 for permissions ["firebase.projects.get"]
+[debug] [2020-02-26T14:38:02.290Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/meteo3d-d1068:testIamPermissions  
+
+[debug] [2020-02-26T14:38:02.779Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-26T14:38:02.782Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/meteo3d-d1068  
+ 
+[debug] [2020-02-26T14:38:03.058Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-26T14:38:03.067Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/meteo3d-d1068/webApps/-/config  
+ 
+[warn] ⚠  Your requested "node" version "8" doesn't match your global version "13"
+[info] ✔  functions: Emulator started at http://localhost:5001
+[debug] [2020-02-26T14:38:03.727Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions" for Cloud Functions...
+[debug] [2020-02-26T14:38:03.822Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-26T14:38:03.823Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-26T14:38:03.823Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-26T14:38:03.824Z] [worker-~diagnostic~-7142934c-b2da-4858-afc1-ac957be7d2fb]: Assigning socketPath: /tmp/fire_emu_3802.sock
+[debug] [2020-02-26T14:38:03.825Z] [worker-~diagnostic~-7142934c-b2da-4858-afc1-ac957be7d2fb]: BUSY
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2020-02-26T14:38:04.111Z] [runtime-status] [3802] Functions runtime initialized. {"cwd":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions","node_version":"13.1.0"}
+[debug] [2020-02-26T14:38:04.113Z] [runtime-status] [3802] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-02-26T14:38:04.115Z] [runtime-status] [3802] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-26T14:38:04.116Z] [runtime-status] [3802] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-26T14:38:04.117Z] [runtime-status] [3802] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  /home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/index.js:4
+const express = require('express-handlebars');
+      ^
+
+SyntaxError: Identifier 'express' has already been declared
+    at wrapSafe (internal/modules/cjs/loader.js:983:16)
+    at Module._compile (internal/modules/cjs/loader.js:1033:27)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1103:10)
+    at Module.load (internal/modules/cjs/loader.js:914:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:822:14)
+    at Module.require (internal/modules/cjs/loader.js:956:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at /usr/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:718:33
+    at Generator.next (<anonymous>)
+    at fulfilled (/usr/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:4:58)
+[warn] ⚠  We were unable to load your functions code. (see above)
+[debug] [2020-02-26T14:38:04.170Z] [worker-~diagnostic~-7142934c-b2da-4858-afc1-ac957be7d2fb]: exited
+[debug] [2020-02-26T14:38:04.170Z] [worker-~diagnostic~-7142934c-b2da-4858-afc1-ac957be7d2fb]: FINISHED
+[debug] [2020-02-26T14:38:08.211Z] File /home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/index.js changed, reloading triggers
+[debug] [2020-02-26T14:38:09.212Z] [worker-pool] Cleaned up workers for ~diagnostic~: 1 --> 0
+[debug] [2020-02-26T14:38:09.223Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-26T14:38:09.223Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-26T14:38:09.223Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-26T14:38:09.223Z] [worker-~diagnostic~-146430ce-d969-4844-8abe-20f781105deb]: Assigning socketPath: /tmp/fire_emu_3816.sock
+[debug] [2020-02-26T14:38:09.224Z] [worker-~diagnostic~-146430ce-d969-4844-8abe-20f781105deb]: BUSY
+[debug] [2020-02-26T14:38:09.499Z] [runtime-status] [3816] Functions runtime initialized. {"cwd":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions","node_version":"13.1.0"}
+[debug] [2020-02-26T14:38:09.501Z] [runtime-status] [3816] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-02-26T14:38:09.503Z] [runtime-status] [3816] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-26T14:38:09.505Z] [runtime-status] [3816] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-26T14:38:09.506Z] [runtime-status] [3816] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-26T14:38:11.363Z] ----------------------------------------------------------------------
+[debug] [2020-02-26T14:38:11.365Z] Command:       /usr/bin/node /usr/bin/firebase serve --only functions,hosting
+[debug] [2020-02-26T14:38:11.365Z] CLI Version:   7.12.1
+[debug] [2020-02-26T14:38:11.365Z] Platform:      linux
+[debug] [2020-02-26T14:38:11.365Z] Node Version:  v13.1.0
+[debug] [2020-02-26T14:38:11.381Z] Time:          Wed Feb 26 2020 14:38:11 GMT+0000 (uniwersalny czas koordynowany)
+[debug] [2020-02-26T14:38:11.381Z] ----------------------------------------------------------------------
+[debug] [2020-02-26T14:38:11.381Z] 
+[debug] [2020-02-26T14:38:11.387Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-26T14:38:11.388Z] > authorizing via signed-in user
+[debug] [2020-02-26T14:38:11.388Z] [iam] checking project meteo3d-d1068 for permissions ["firebase.projects.get"]
+[debug] [2020-02-26T14:38:11.389Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/meteo3d-d1068:testIamPermissions  
+
+[debug] [2020-02-26T14:38:11.781Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-26T14:38:11.786Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/meteo3d-d1068  
+ 
+[debug] [2020-02-26T14:38:12.143Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-26T14:38:12.152Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/meteo3d-d1068/webApps/-/config  
+ 
+[warn] ⚠  Your requested "node" version "8" doesn't match your global version "13"
+[info] ✔  functions: Emulator started at http://localhost:5001
+[debug] [2020-02-26T14:38:12.897Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions" for Cloud Functions...
+[debug] [2020-02-26T14:38:13.009Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-26T14:38:13.010Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-26T14:38:13.010Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-26T14:38:13.012Z] [worker-~diagnostic~-16411664-86f0-4573-a634-fa2ddb612f4f]: Assigning socketPath: /tmp/fire_emu_3838.sock
+[debug] [2020-02-26T14:38:13.012Z] [worker-~diagnostic~-16411664-86f0-4573-a634-fa2ddb612f4f]: BUSY
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2020-02-26T14:38:13.280Z] [runtime-status] [3838] Functions runtime initialized. {"cwd":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions","node_version":"13.1.0"}
+[debug] [2020-02-26T14:38:13.282Z] [runtime-status] [3838] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-02-26T14:38:13.284Z] [runtime-status] [3838] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-26T14:38:13.286Z] [runtime-status] [3838] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-26T14:38:13.287Z] [runtime-status] [3838] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  ReferenceError: Cannot access 'app' before initialization
+    at Object.<anonymous> (/home/daniel/Projects/METEO-by-Pozytywne3D-back/functions/index.js:12:1)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1103:10)
+    at Module.load (internal/modules/cjs/loader.js:914:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:822:14)
+    at Module.require (internal/modules/cjs/loader.js:956:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at /usr/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:718:33
+    at Generator.next (<anonymous>)
+    at fulfilled (/usr/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:4:58)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[warn] ⚠  We were unable to load your functions code. (see above)
+[debug] [2020-02-26T14:38:13.883Z] [worker-~diagnostic~-16411664-86f0-4573-a634-fa2ddb612f4f]: exited
+[debug] [2020-02-26T14:38:13.883Z] [worker-~diagnostic~-16411664-86f0-4573-a634-fa2ddb612f4f]: FINISHED
