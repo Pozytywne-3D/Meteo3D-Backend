@@ -21,6 +21,14 @@ app.get('/', (request, response) => {
 		response.render('index', { text: 'handlebarsy też działają'});
 });
 
+app.get('/data.json', (request, response) => {
+	const dbRef = firebase.database().ref()
+	var data = dbRef.once('value').then(function(dataSnapshot) {
+		return dataSnapshot.val();
+	  });
+	response.json(data);
+});
+
 
 /*
 app.static(path.join(__dirname + "public"))
