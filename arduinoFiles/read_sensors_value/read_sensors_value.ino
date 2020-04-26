@@ -1,6 +1,10 @@
 #include <WEMOS_SHT3X.h>
 #include <Adafruit_BMP085.h>
 #include <SDS011.h>
+#include <ESP8266WiFi.h>
+
+char ssid[] = "#";
+char password[] = "#";
 
 #define RXpin D6
 #define TXpin D7
@@ -18,6 +22,21 @@ void setup() {
   if (!bmp.begin()) {
     Serial.println("Could not find a valid BMP085 sensor, check wiring!");
   }
+  
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid,password);
+
+    while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.println("Wi-Fi connected successfully");
+
 }
 
 void loop() {
