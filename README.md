@@ -9,4 +9,10 @@
 
 <hr>
 
+### API:
+* Link zwracający dane z bazy, dotyczące czujników pod adresem: https://meteo3d-d1068.web.app/measurements
+* Link zwracający dane z bazy, dotyczące stacji pod adresem: https://meteo3d-d1068.web.app/stations
+
+<hr>
+
 ### Konto kontaktowe: meteo3dcontact@gmail.com 
