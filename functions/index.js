@@ -15,8 +15,11 @@ app.set('views', './views');
 app.set('view engine', 'hbs');
 
 
-app.get('/data',(req,res)=>{
+app.get('/measurements',(req,res)=>{
     userOperation.getMeasurements(res);
+})
+app.get('/stations',(req,res)=>{
+    userOperation.getStations(res);
 })
 
 app.use('/static', express.static('public'));
