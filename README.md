@@ -7,4 +7,6 @@
 * **ESP8266WiFi:**  https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi
 * **FirebaseArduino.h:**  https://github.com/firebase/firebase-arduino
 
-## Konto kontaktowe: meteo3dcontact@gmail.com 
+<hr>
+
+### Konto kontaktowe: meteo3dcontact@gmail.com 
