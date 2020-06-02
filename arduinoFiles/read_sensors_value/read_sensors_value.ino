@@ -10,7 +10,7 @@ char password[] = "Hallmann246";
 
 
 #define FIREBASE_HOST "meteo3d-d1068.firebaseio.com"
-#define FIREBASE_AUTH "abc123" // <=== REPLACE THAT
+#define FIREBASE_AUTH "pQAVQdX9spOg9piYZsiYmJ7EStaUaaWfL3uKnUnQ"
 #define RXpin D6
 #define TXpin D7
 
@@ -20,13 +20,16 @@ SHT3X sht30(0x45);
 
 boolean startingUp = true;
 
-String stationLocation = "ti";
+String stationNumber = "2";
 
-float pm10, pm25;
 boolean ifError;
 String data;
+
 int airtemp, airhum;
+float pm10, pm25;
+
 unsigned long startingTime, sleepTime;
+int measurementNumber;
 
 DynamicJsonBuffer jsonBuffer;
   
@@ -60,19 +63,23 @@ void setup() {
   Serial.println("Wi-Fi connected successfully");
 
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+
+  measurementNumber = Firebase.getInt("measurements/"+stationNumber+"/lastMeasurement");
 }
 
 
 void loop() {
+  measurementNumber++;
   startingTime = millis();
   sds.wakeup();
   Serial.println("Starting SDS011...");
-  for(int i=0;i<60*2;i++){
+  for(int i=0;i<60;i++){
     digitalWrite(LED_BUILTIN, HIGH);
     delay(800);
     digitalWrite(LED_BUILTIN, LOW);
     delay(200);
   }
+  
   ifError = sds.read(&pm25,&pm10);
   if(ifError){
     Serial.println("Error sds011 <<========");
@@ -107,10 +114,13 @@ void loop() {
       ",\"iaqpm10\":"+String(pm10)+
       ",\"iaqpm25\":"+String(pm25)+"}";
   JsonObject& data = jsonBuffer.parseObject(jsonInput);
-    
-  Firebase.push("measurements/"+stationLocation, data);
-  if(!Firebase.success()){
-    Firebase.pushString("errors/", stationLocation);
+
+  Firebase.set("measurements/"+stationNumber+"/m"+measurementNumber, data);
+  if(Firebase.success()){
+      Firebase.set("measurements/"+stationNumber+"/lastMeasurement", measurementNumber);
+  }else{
+    Firebase.pushString("errors/", stationNumber+" "+measurementNumber);
+    measurementNumber--;
     if(!Firebase.success()){
       Serial.println("Firebase error");
       if(!startingUp){
