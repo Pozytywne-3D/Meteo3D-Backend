@@ -10,7 +10,7 @@ char password[] = "Hallmann246";
 
 
 #define FIREBASE_HOST "meteo3d-d1068.firebaseio.com"
-#define FIREBASE_AUTH "pQAVQdX9spOg9piYZsiYmJ7EStaUaaWfL3uKnUnQ"
+#define FIREBASE_AUTH "qwerty123"
 #define RXpin D6
 #define TXpin D7
 
@@ -20,7 +20,7 @@ SHT3X sht30(0x45);
 
 boolean startingUp = true;
 
-String stationNumber = "2";
+String stationLocation = "2";
 
 boolean ifError;
 String data;
@@ -64,7 +64,7 @@ void setup() {
 
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
 
-  measurementNumber = Firebase.getInt("measurements/"+stationNumber+"/lastMeasurement");
+  measurementNumber = Firebase.getInt("measurements/"+stationLocation+"/lastMeasurement");
 }
 
 
@@ -115,11 +115,11 @@ void loop() {
       ",\"iaqpm25\":"+String(pm25)+"}";
   JsonObject& data = jsonBuffer.parseObject(jsonInput);
 
-  Firebase.set("measurements/"+stationNumber+"/m"+measurementNumber, data);
+  Firebase.set("measurements/"+stationLocation+"/m"+measurementNumber, data);
   if(Firebase.success()){
-      Firebase.set("measurements/"+stationNumber+"/lastMeasurement", measurementNumber);
+      Firebase.set("measurements/"+stationLocation+"/lastMeasurement", measurementNumber);
   }else{
-    Firebase.pushString("errors/", stationNumber+" "+measurementNumber);
+    Firebase.pushString("errors/", stationLocation+" "+measurementNumber);
     measurementNumber--;
     if(!Firebase.success()){
       Serial.println("Firebase error");
@@ -139,7 +139,7 @@ void loop() {
 
   // shuting down WiFi
   if(startingTime>=millis()){
-    sleepTime = 58*60*1000;
+    sleepTime = 59*60*1000;
     Serial.println("millis() overflow - inaccurate sleep time");
   }else{
     sleepTime = 60*60*1000 - (millis() - startingTime);
