@@ -4,13 +4,15 @@
 #include <WEMOS_SHT3X.h>
 #include <Adafruit_BMP085.h>
 #include <ESP8266WiFi.h>
+#include <WiFiUdp.h>
+#include <NTPClient.h>
 
 char ssid[] = "Hallmann";
 char password[] = "Hallmann246";
 
 
 #define FIREBASE_HOST "meteo3d-d1068.firebaseio.com"
-#define FIREBASE_AUTH "qwerty123"
+#define FIREBASE_AUTH ""
 #define RXpin D6
 #define TXpin D7
 
@@ -20,7 +22,7 @@ SHT3X sht30(0x45);
 
 boolean startingUp = true;
 
-String stationLocation = "2";
+String stationLocation = "foo";
 
 boolean ifError;
 String data;
@@ -28,11 +30,14 @@ String data;
 int airtemp, airhum;
 float pm10, pm25;
 
-unsigned long startingTime, sleepTime;
+unsigned long startingTime, sleepTime, timestamp;
 int measurementNumber;
 
 DynamicJsonBuffer jsonBuffer;
-  
+
+const long utcOffset = 0;
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP, "pool.ntp.org", utcOffset);
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
@@ -63,7 +68,7 @@ void setup() {
   Serial.println("Wi-Fi connected successfully");
 
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-
+  timeClient.begin();
   measurementNumber = Firebase.getInt("measurements/"+stationLocation+"/lastMeasurement");
 }
 
@@ -73,7 +78,7 @@ void loop() {
   startingTime = millis();
   sds.wakeup();
   Serial.println("Starting SDS011...");
-  for(int i=0;i<60;i++){
+  for(int i=0;i<6;i++){
     digitalWrite(LED_BUILTIN, HIGH);
     delay(800);
     digitalWrite(LED_BUILTIN, LOW);
@@ -107,14 +112,20 @@ void loop() {
   Serial.println("PM 1.0: " + String(pm10));
   Serial.println("PM 2.5: " + String(pm25));
 
+  timeClient.update();
+  timestamp = timeClient.getEpochTime();
+  Serial.println(timestamp);
+  
   String jsonInput =
       "{\"airhum\":"+String(airhum)+
       ",\"airtemp\":"+String(airtemp)+
       ",\"atmpress\":"+String(atmpress)+
-      ",\"iaqpm10\":"+String(pm10)+
-      ",\"iaqpm25\":"+String(pm25)+"}";
+      ",\"pm10\":"+String(pm10)+
+      ",\"pm25\":"+String(pm25)+
+      ",\"timestamp\":"+String(timestamp)+"}";
   JsonObject& data = jsonBuffer.parseObject(jsonInput);
 
+  Serial.println(measurementNumber);
   Firebase.set("measurements/"+stationLocation+"/m"+measurementNumber, data);
   if(Firebase.success()){
       Firebase.set("measurements/"+stationLocation+"/lastMeasurement", measurementNumber);
@@ -148,7 +159,7 @@ void loop() {
   Serial.println("/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\");
   WiFi.forceSleepBegin();
   sds.sleep();
-  delay(sleepTime);
+  delay(5000);
   WiFi.forceSleepWake();  //WiFi on
   startingUp = false;
 }
